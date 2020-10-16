@@ -34,7 +34,6 @@ const setMPA = () => {
 
 const { entry, plugins } = setMPA();
 
-console.log('entry', entry);
 module.exports = {
     entry,
     output: {
