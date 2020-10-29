@@ -1,0 +1,25 @@
+{
+  "name": "file-ziper-and-uploader",
+  "version": "2.5.17",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "chenyan",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/constantince/file-ziper-and-uploader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/constantince/file-ziper-and-uploader/issues"
+  },
+  "homepage": "https://github.com/constantince/file-ziper-and-uploader#readme"
+}
