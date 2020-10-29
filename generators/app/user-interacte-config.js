@@ -29,9 +29,15 @@ const questions = {
 	],
 	npm: [
 		{
+			type: "input",
+			name: "packageName",
+			message: "Please input your package name",
+			default: ""
+		},
+		{
 			type: "list",
 			name: "language",
-			message: "Chooise your pererfer language",
+			message: "Chooise your preferred language",
 			choices: ["javascript", "typescript"],
 			default: "typescript"
 		},
@@ -40,7 +46,7 @@ const questions = {
 			name: "type",
 			message: "Whitch Type Packages do your want to build",
 			choices: ["web", "node"],
-			default: "node"
+			default: "web"
 
 		},
 		{

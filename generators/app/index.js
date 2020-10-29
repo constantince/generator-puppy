@@ -1,24 +1,20 @@
 const { exit } = require("process");
 const Generator = require("yeoman-generator");
 const questions = require("./user-interacte-config");
-const allConfigs = require('./packages/entre.json');
-const entre = require("./packages/entre.json");
+const entre = require("./public/packages/entre.json");
+const rules = require("./public/configs/rules.config");
 module.exports = class extends Generator {
   greeting() {
-    this.log("Now let's pay with Puppies!!");
+    
   }
 
   async prompting() {
     const { base, end } = questions;
-    const answers = await this.prompt(base);
-    const continues = await this.prompt(questions[answers.way]);
-    const ends = await this.prompt(end);
-    this.configName = [continues.language, continues.tools];
-    // this.config.set('coffeescript', false);
-    console.log(answers, continues, ends);
-
-    // exit()
-    // console.log("these are your answers!!", answers);
+    this.answers = await this.prompt(base);
+    this.continues = await this.prompt(questions[this.answers.way]);
+    this.ends = await this.prompt(end);
+    this.configName = [this.continues.language, this.continues.tools];
+    console.log(this.answers, this.continues, this.ends);
   }
 
   paths() {
@@ -29,50 +25,73 @@ module.exports = class extends Generator {
   
 
   writing() {
-    // console.log(this.destinationPath())
-    // const npm = this.templatePath('npm');
-    // this.fs.copyTpl(
-    //     this.templatePath('npm'),
-    //     this.destinationPath(),
-    //     { title: 'Templating with Yeoman' }
-    //   );
-    // this.copyTemplate()
-    this.extendJSONFile();
+    const way = this.templatePath(this.answers.way);
+
+    this.fs.copyTpl(
+        this.templatePath(way),
+        this.destinationPath(),
+        null,
+        null,
+        { globOptions: { dot: true } }
+    );
+    
+    switch(this.answers.way) {
+      case 'npm':
+          this.copyConfigFiles();
+          // this.conpyDotFiles();
+          this.extendJSONFile();
+          this.writeEntryFile();
+        break;
+
+      default:
+        exit();
+        break;
+    }
+    
+  }
+
+  //写入入口文件
+  writeEntryFile() {
+    const isTs = this.continues.language === 'typescript';
+    const suffix = isTs ? 'ts' : 'js';
+    const content = isTs ? `const puppy = (word: string) => {
+        console.log("hello world");
+    }
+    export default puppy;` : 'var puppy = "Hello Pyppy";'
+    this.fs.write(this.destinationPath(`src/index.${suffix}`), content);
   }
 
   //拷贝配置对应的配置文件
   copyConfigFiles() {
     this.configName.forEach(v => {
       this.fs.copyTpl(
-        this.templatePath('npm'),
-        this.destinationPath(),
-        { title: 'Templating with Yeoman' }
+        this.templatePath(`../public/configs/${v}`),
+        this.destinationPath(`${rules[v]}`),
+        Object.assign(this.answers, this.continues, this.ends)
       );
     });
   }
 
+  //拷贝dotfile
+  // conpyDotFiles() {
+  //   this.fs.copy(
+  //     this.templatePath('npm/.*'),
+  //     this.destinationRoot()
+  //   );
+  // }
+
   //扩展package.json
   extendJSONFile() {
     this.configName.forEach(v => {
-      console.log(v, entre[v]);
       this.fs.extendJSON(this.destinationPath('package.json'), entre[v]);
     });
-    // exit();
-    // const additionSettings = 
-    // const pkgJson = {
-    //   devDependencies: {
-    //     eslint: '^3.15.0'
-    //   },
-    //   dependencies: {
-    //     react: '^16.2.0'
-    //   }
-    // };
-
-    // // Extend or create package.json file in destination path
-    // this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
+    //修改包名
+    this.fs.extendJSON(this.destinationPath('package.json'), {
+      name: this.answers.packageName
+    })
   }
-
+  //最后安装依赖
   install() {
-    // this.npmInstall();
+    this.npmInstall();
   }
 };
