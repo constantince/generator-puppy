@@ -4,10 +4,6 @@ const questions = require("./user-interacte-config");
 const entre = require("./public/packages/entre.json");
 const rules = require("./public/configs/rules.config");
 module.exports = class extends Generator {
-  greeting() {
-    
-  }
-
   async prompting() {
     const { base, end } = questions;
     this.answers = await this.prompt(base);
@@ -23,7 +19,7 @@ module.exports = class extends Generator {
   }
 
   
-
+  //开始写入文件
   writing() {
     const way = this.templatePath(this.answers.way);
 
@@ -71,14 +67,6 @@ module.exports = class extends Generator {
       );
     });
   }
-
-  //拷贝dotfile
-  // conpyDotFiles() {
-  //   this.fs.copy(
-  //     this.templatePath('npm/.*'),
-  //     this.destinationRoot()
-  //   );
-  // }
 
   //扩展package.json
   extendJSONFile() {

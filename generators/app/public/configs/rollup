@@ -1,0 +1,28 @@
+import reslove from 'rollup-plugin-node-resolve';
+<% if(language === 'typescript'){ %>import typescript from 'rollup-plugin-typescript2';<%}%>
+import commonjs from 'rollup-plugin-commonjs';
+import { eslint } from 'rollup-plugin-eslint';
+<% if(type === 'web') { %>import { uglify } from 'rollup-plugin-uglify';<%}%>
+export default {
+  input: "src/index.<%= language === 'typescript' ? 'ts' : 'js' %>",
+  output: [{
+     file: 'lib/index.js',
+     format: 'cjs',
+     sourceMap: true
+  }
+],
+  sourceMap: true,
+  plugins: [
+      reslove(),
+      eslint({fix: true, include: 'src/'}),
+      commonjs(),
+      <% if(language === 'typescript'){ %>typescript(),<%}%>
+      <% if(type === 'web') { %>
+      uglify({
+          compress: true,
+          sourcemap: true
+      })
+    <%}%>
+     
+  ]
+}
