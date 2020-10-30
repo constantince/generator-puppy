@@ -6,7 +6,7 @@ import { eslint } from 'rollup-plugin-eslint';
 export default {
   input: "src/index.<%= language === 'typescript' ? 'ts' : 'js' %>",
   output: [{
-     file: 'lib/index.js',
+     dir: "lib/",
      format: 'cjs',
      sourceMap: true
   }
@@ -14,9 +14,9 @@ export default {
   sourceMap: true,
   plugins: [
       reslove(),
-      eslint({fix: true, include: 'src/'}),
+      eslint({fix: true}),
       commonjs(),
-      <% if(language === 'typescript'){ %>typescript(),<%}%>
+      <% if(language === 'typescript'){ %>typescript({include: ["src/*.ts+(|x)"]}),<%}%>
       <% if(type === 'web') { %>
       uglify({
           compress: true,

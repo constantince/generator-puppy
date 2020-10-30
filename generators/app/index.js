@@ -20,21 +20,11 @@ module.exports = class extends Generator {
 
   
   //开始写入文件
-  writing() {
-    const way = this.templatePath(this.answers.way);
-
-    this.fs.copyTpl(
-        this.templatePath(way),
-        this.destinationPath(),
-        null,
-        null,
-        { globOptions: { dot: true } }
-    );
-    
+  writing() {    
     switch(this.answers.way) {
       case 'npm':
           this.copyConfigFiles();
-          // this.conpyDotFiles();
+          this.conpyDotFiles();
           this.extendJSONFile();
           this.writeEntryFile();
         break;
@@ -44,6 +34,17 @@ module.exports = class extends Generator {
         break;
     }
     
+  }
+
+  //拷贝配置文件.结尾
+  conpyDotFiles() {
+    this.fs.copyTpl(
+        this.templatePath(this.answers.way),
+        this.destinationPath(),
+        Object.assign(this.answers, this.continues, this.ends),
+        null,
+        { globOptions: { dot: true } }
+    );
   }
 
   //写入入口文件

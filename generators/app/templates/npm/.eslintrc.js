@@ -3,14 +3,15 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  plugins: [
+  <%if(language === 'typescript'){%>plugins: [
     'typescript',
     "@typescript-eslint"
   ],
+  <%}%>
   "settings": {
     "import/extensions": [".js",".jsx",".ts",".tsx"],
     "import/parsers": {
-        "@typescript-eslint/parser": [".ts",".tsx"]
+        <%if(language === 'typescript'){%>"@typescript-eslint/parser": [".ts",".tsx"]<%}%>
     },
     "import/resolver": {
         "node": {
@@ -18,12 +19,12 @@ module.exports = {
         }
     }
   },
-  parser: "@typescript-eslint/parser",
+  <%if(language === 'typescript'){%>parser: "@typescript-eslint/parser",<%}%>
   extends: [
     'airbnb',
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    <%if(language === 'typescript'){%>"plugin:@typescript-eslint/eslint-recommended",<%}%>
+    <%if(language === 'typescript'){%>"plugin:@typescript-eslint/recommended"<%}%>
   ],
   globals: {
     Atomics: 'readonly',
@@ -43,7 +44,7 @@ module.exports = {
     "grouping": 0,
     "allowCall": 0,
     "no-underscore-dangle":0,
-    "@typescript-eslint/no-namespace": 0,
+    <%if(language === 'typescript'){%>"@typescript-eslint/no-namespace": 0,<%}%>
     "max-len": ["error", { "code": 150 }],
     "import/extensions": [
       "error",
