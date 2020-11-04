@@ -1,6 +1,6 @@
 {
   "name": "generator-puppy",
-  "version": "1.0.0",
+  "version": "1.2.4",
   "description": "",
   "homepage": "",
   "author": "",
@@ -28,13 +28,12 @@
     "npm": ">= 4.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1 && jest",
-    "pretest": "eslint ."
+    "test": "echo \"Error: no test specified\" && exit 1 && jest"
   },
   "license": "ISC",
   "dependencies": {
-    "yeoman-generator": "^2.0.1",
     "chalk": "^2.1.0",
+    "yeoman-environment": "^2.10.3",
     "yosay": "^2.0.1"
   },
   "jest": {
