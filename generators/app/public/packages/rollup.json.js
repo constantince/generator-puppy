@@ -8,5 +8,6 @@ module.exports = {
         "rollup-plugin-typescript2": "^0.28.0",
         "rollup-plugin-uglify": "^6.0.4",
         "rollup-watch": "^4.3.1",
+        "rollup-plugin-eslint": "^7.0.0"
      },
 }

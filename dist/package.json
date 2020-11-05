@@ -1,5 +1,5 @@
 {
-  "name": "yeoman",
+  "name": "unkonw",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -9,14 +9,20 @@
     "start": "rollup -c -w",
     "build": "rollup -c"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-typescript": "^0.14.0",
+    "eslint": "^7.12.1",
+    "rollup": "^2.32.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-typescript2": "^0.28.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "rollup-watch": "^4.3.1",
     "rollup-plugin-eslint": "^7.0.0"
   },
   "keywords": [],
