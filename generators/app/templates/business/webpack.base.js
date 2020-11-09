@@ -2,9 +2,11 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const F = require('friendly-errors-webpack-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const glob = require('glob');
+//全局打包环境变量，通过package的script中传入
 const env = process.env.NODE_ENV;
+//设置多界面打包入口函数
 const setMPA = () => {
     let entry = {};
     const entryFiels = glob.sync(path.join(__dirname, './src/*/index.{js,tsx,ts}'));
@@ -22,16 +24,15 @@ const setMPA = () => {
             }
         })
     });
-    
+
     return {
         entry,
         plugins
     }
 }
 
-const {entry, plugins} = setMPA();
+const { entry, plugins } = setMPA();
 
-console.log('entry', entry);
 module.exports = {
     entry: entry,
     output: {
@@ -51,9 +52,9 @@ module.exports = {
                 ]
             },
             {
-                test:/(jpg|png|jpeg|svg|gif|woff2?|tff|off)$/,
+                test: /(jpg|png|jpeg|svg|gif|woff2?|tff|off)$/,
                 use: [{
-                    loader:"file-loader",
+                    loader: "url-loader",
                     options: {
                         name: '[name]_[hash:8][ext]'
                     }
@@ -71,12 +72,14 @@ module.exports = {
                     } : 'style-loader',
                     "css-loader",
 
-                    {loader: 'px2rem-loader', options: { //注意顺序
-                        remUnit: 75,
-                        remPrecision: 8,
-                    }},
+                    {
+                        loader: 'px2rem-loader', options: { //注意顺序
+                            remUnit: 75,
+                            remPrecision: 8,
+                        }
+                    },
                     "sass-loader",
-                    
+
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -85,16 +88,16 @@ module.exports = {
                                     browsers: ['last 2 version', '>1%', 'ios 7']
                                 })
                             ]
-                          }
+                        }
                     }
                 ]
-            },    
+            },
         ]
     },
     plugins: [
         new CleanWebpackPlugin(),
-          ...plugins,
-          new MiniCssExtractPlugin(),
-          new F()
+        new MiniCssExtractPlugin(),
+        new FriendlyErrorsWebpackPlugin(),
+        ...plugins,
     ]
 }

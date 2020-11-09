@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Comp from './components/firstComp';
-import './index.scss';
 
 type AppList = {
   greeting: string;
@@ -9,15 +7,12 @@ type AppList = {
 
 const App: React.FC<AppList> = ({ greeting }): JSX.Element => (
   <h4 className="container">
-        {greeting}
-    <Comp Params1="constantince" Params2={22} Params3={(say) => true} />
-
-
-
-    
-    </h4>)
+    <a href="./app.html">go about page</a>
+    {greeting}
+    </h4>
+);
 
 ReactDom.render(
-    <App greeting="Hello World" />,
+    <App greeting="Hello About" />,
     document.getElementById('root'),
 );

@@ -7,7 +7,13 @@
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "watch": "webpack --watch",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
-    "fix": "eslint --fix src/*"
+    "fix": "eslint --fix src/*/*.tsx"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm fix",
+      "pre-push": "npm test"
+    }
   },
   "keywords": [
     "no",
@@ -21,6 +27,7 @@
     "@babel/preset-react": "^7.10.4",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
     "autoprefixer": "^9.8.6",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.1.0",
@@ -36,11 +43,13 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.0",
+    "eslint-plugin-typescript": "^0.14.0",
     "file-loader": "^6.1.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
     "html-webpack-externals-plugin": "^3.8.0",
     "html-webpack-plugin": "^4.4.1",
+    "husky": "^4.3.0",
     "install": "^0.13.0",
     "lib-flexible": "^0.3.2",
     "mini-css-extract-plugin": "^0.11.0",
@@ -54,6 +63,7 @@
     "style-loader": "^1.2.1",
     "ts-loader": "^8.0.3",
     "typescript": "^4.0.2",
+    "url-loader": "^4.1.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",

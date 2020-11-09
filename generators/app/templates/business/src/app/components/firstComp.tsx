@@ -1,4 +1,5 @@
 import React from 'react';
+import bucket from '../assets/images/bucket.png';
 
 type CallbackTpes<T> = {
     (say: T) : T
@@ -15,7 +16,8 @@ const FirstCom: React.FC<Props>  = ({Params1, Params2, Params3}): JSX.Element =>
     const show = Params3(true);
 
     return <div>
-       {show && <p> {Params1} is {Params2} now!!! </p> } 
+        <img src={bucket} />
+       {show ? <p> {Params1} is {Params2} now!!! </p> : null } 
     </div>
 }
 
