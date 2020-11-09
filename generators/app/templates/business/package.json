@@ -4,7 +4,6 @@
   "description": "Project for webpack parctice",
   "main": "index.js",
   "scripts": {
-    "precommit": "npm test",
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "watch": "webpack --watch",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
@@ -12,7 +11,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm fix",
+      "pre-commit": "lint-staged",
       "pre-push": "npm test"
     }
   },
