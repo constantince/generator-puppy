@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const baseConfig = require('./webpack.base');
 const path = require('path');
 const { merge } = require("webpack-merge");
-console.log(merge)
 const devConfigs = {
     output: {
         path: path.join(__dirname, 'dist'),

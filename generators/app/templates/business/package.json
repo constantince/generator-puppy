@@ -6,7 +6,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "watch": "webpack --watch",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js --open"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js",
+    "fix": "eslint --fix src/*"
   },
   "keywords": [
     "no",
