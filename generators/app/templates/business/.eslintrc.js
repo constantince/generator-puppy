@@ -5,7 +5,11 @@ module.exports = {
   },
   plugins: [
     'typescript',
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "jsx-a11y",
+    "import",
+    "prettier",
+    "react"
   ],
   "settings": {
     "import/extensions": [".js",".jsx",".ts",".tsx"],
@@ -37,7 +41,11 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    "no-use-before-define": 0,
+    "react/jsx-filename-extension": 0,
     "semi": "error",
+    "react/prop-types": 0,
+    "react/jsx-indent": 0,
     "indent": ["error", 4],
     "no-console": "off",
     "grouping": 0,
@@ -45,6 +53,7 @@ module.exports = {
     "no-underscore-dangle":0,
     "@typescript-eslint/no-namespace": 0,
     "max-len": ["error", { "code": 150 }],
+    "prettier/prettier": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-type AppList = {
+interface Props {
   greeting: string;
-};
+}
 
-const App: React.FC<AppList> = ({ greeting }): JSX.Element => (
-  <h4 className="container">
-    <a href="./app.html">go about page</a>
-    {greeting}
-    
+const App: React.FC<Props> = ({ greeting }) => (
+    <h4 className="container">
+        <a href="./app.html">go about page</a>
+        {greeting}
+
     </h4>
 );
 

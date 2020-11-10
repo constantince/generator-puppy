@@ -11,7 +11,7 @@ type Props = {
     Params3: CallbackTpes<boolean>
 }
 
-const FirstCom: React.FC<Props>  = ({Params1, Params2, Params3}): JSX.Element => {
+const FirstCom: React.FC<Props> = ({Params1, Params2, Params3}) => {
 
     const show = Params3(true);
 
