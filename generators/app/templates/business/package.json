@@ -19,8 +19,18 @@
     "*.tsx": [
       "eslint --fix",
       "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
     ]
   },
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "plugins": [
+    "prettier"
+  ],
   "keywords": [
     "no",
     "keys"
@@ -61,8 +71,10 @@
     "husky": "^4.3.0",
     "install": "^0.13.0",
     "lib-flexible": "^0.3.2",
+    "lint-staged": "^10.5.1",
     "mini-css-extract-plugin": "^0.11.0",
     "postcss-loader": "^3.0.0",
+    "prettier": "^2.1.2",
     "px2rem-loader": "^0.1.9",
     "raw-loader": "^0.5.1",
     "react": "^16.13.1",
