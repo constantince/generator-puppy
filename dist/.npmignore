@@ -1,9 +1,0 @@
-.gitignore
-test/
-rollup.config.js
-tsconfig.json
-.eslintrc.js
-lib/
-types/index.js
-types/index.ts
-index.ts

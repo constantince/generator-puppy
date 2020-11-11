@@ -23,7 +23,7 @@ module.exports = class Npm extends Generator {
 
   
   //开始写入文件
-  writing() {    
+  writing() {  
     switch(this.answers.way) {
       case 'plugins':
           this.copyConfigFiles();
@@ -35,6 +35,10 @@ module.exports = class Npm extends Generator {
           this.conpyDotFiles();
           this.extendJSONFile();
           this.writeEntryFile();
+        break;
+
+      case 'business':
+
         break;
 
       default:
