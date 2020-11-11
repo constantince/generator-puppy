@@ -71,7 +71,7 @@ module.exports = class Npm extends Generator {
   copyConfigFiles() {
     this.configName.forEach(v => {
       this.fs.copyTpl(
-        this.templatePath(`../public/configs/${v}`),
+        this.templatePath(`../public/configs/${v}.ejs`),
         this.destinationPath(`dist/${rules[v]}`),
         Object.assign(this.answers, this.continues, this.ends)
       );
