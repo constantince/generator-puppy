@@ -12,7 +12,7 @@ module.exports = class Npm extends Generator {
     this.continues = await this.prompt(questions[this.answers.way]);
     this.ends = await this.prompt(end);
     this.configName = [this.continues.language, this.continues.tools];
-    console.log(this.answers, this.continues, this.ends, this.destinationPath('dist/'));
+    // console.log(this.answers, this.continues, this.ends, this.destinationPath('dist/'));
     // exit();
   }
 
@@ -53,7 +53,7 @@ module.exports = class Npm extends Generator {
     console.log(this.answers.way);
     this.fs.copyTpl(
         this.templatePath(this.answers.way),
-        this.destinationPath('dist/'),
+        this.destinationPath(),
         Object.assign(this.answers, this.continues, this.ends),
         null,
         { globOptions: { dot: true } }
@@ -68,7 +68,7 @@ module.exports = class Npm extends Generator {
         console.log("hello world");
     }
     export default puppy;` : 'var puppy = "Hello Pyppy";'
-    this.fs.write(this.destinationPath(`dist/src/index.${suffix}`), content);
+    this.fs.write(this.destinationPath(`src/index.${suffix}`), content);
   }
 
   //拷贝配置对应的配置文件
@@ -76,7 +76,7 @@ module.exports = class Npm extends Generator {
     this.configName.forEach(v => {
       this.fs.copyTpl(
         this.templatePath(`../public/configs/${v}.ejs`),
-        this.destinationPath(`dist/${rules[v]}`),
+        this.destinationPath(`${rules[v]}`),
         Object.assign(this.answers, this.continues, this.ends)
       );
     });
@@ -85,10 +85,10 @@ module.exports = class Npm extends Generator {
   //扩展package.json
   extendJSONFile() {
     this.configName.forEach(v => {
-      this.fs.extendJSON(this.destinationPath('dist/package.json'), entre[v]);
+      this.fs.extendJSON(this.destinationPath('package.json'), entre[v]);
     });
     //修改包名
-    this.fs.extendJSON(this.destinationPath('dist/package.json'), {
+    this.fs.extendJSON(this.destinationPath('package.json'), {
       name: this.answers.packageName
     })
   }

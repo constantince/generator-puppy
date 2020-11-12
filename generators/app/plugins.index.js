@@ -1,4 +1,4 @@
-const Npm = require('./index');
+const Npm = require('./npm.index');
 
 
 module.exports = class PuppyCliPlugins extends Npm {
